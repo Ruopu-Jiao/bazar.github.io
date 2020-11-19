@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Purchase History {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+       <p>{{msg}}</p>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+
+ <body>
+    <h1> Purchase History Page </h1>
+
+    <a href="{{ url_for('home')}}">Return to HomePage</a>	
+    <br>
+    <a href="{{ url_for('user')}}">Return to Account Page</a>	
+    <h3>Hi {{first_name}}, you've purchased these items in the past</h3>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item ID</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Time of Purchase</th>
+            <th scope="col">Sold By</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for row in itemsPurchased%}
+            <tr>
+                {% for d in row[1:7] %}
+                <td>{{d}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+ </body>
+{% endblock %}

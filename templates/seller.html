@@ -1,0 +1,98 @@
+<style>
+  .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+</style>
+
+{% extends "base.html" %}
+{% block title %} Seller Page {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  
+<h2>Welcome to the organization page</h2>
+
+<center>
+  <h1>{{org}}</h1>
+  <h3>{{descr}}</h3>
+</center>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">Current Balance</th>
+      <th scope="col">Image</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{user[4]}}</td>
+      <td>{{user[5]}}</td>
+      <td>{{user[1]}}</td>
+      <td>{{user[3]}}</td>
+      <td>{{user[6]}}</td> 
+    </tr>
+  </tbody>
+</table>
+
+<center>
+  <a href="{{ url_for('tradehistory')}}">Trade History</a>
+</center>
+
+</center>
+
+<h3>Selling List</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">Image</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in items%}
+      <tr>
+        <td><a href="item/{{row[0]}}">{{row[1]}}</a></td>
+        {% for d in row[2:4] %}
+        <td>{{d}}</td>
+        {% endfor %}
+        <td><img src="{{row[4]}}" alt="Item Image" class="avatar"></td> 
+        <td>
+        <a href = "/update/{{row[0]}}" class = "btn btn-secondary btn-sm">edit</a>
+        <form action="#" method="POST">
+          <input name="item_id" type="hidden" value="{{row[0]}}">
+          <button type="submit"> Delete Item </button>
+        </form>
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <center>
+  <a href="{{ url_for('additemspage')}}">List a New Item</a>
+  <center><a href="{{ url_for('updateorg')}}">Update my Organization Information</a></center>
+  </center>
+</center>
+{% endblock %}
+ <!-- <form action="#" method="POST">
+          <input name="item_id" type="hidden" value="{{row[0]}}">
+          <button type="submit"> Delete Item </button>
+        </form> -->
+        <!-- <form action="{{url_for('moditem')}}" method="POST">
+          <input name="item_id" type="hidden" value="{{row[0]}}">
+          <button type="submit"> Modify Item </button>
+        </form> -->

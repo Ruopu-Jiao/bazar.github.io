@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/homepage.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+       <!-- Load icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <title>Homepage</title>
+    </head>
+{% extends "base.html" %}
+{% block title %} Home Page {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+<div class="searchbar">
+  <img src="/static/png/bazarLogoFin.png" alt="Logo" style="width:100px;height:40px;">
+  <form class = "search" action="/" method = "POST">
+    <input class= "searchinput" type="text" placeholder="Search for an item" name="searchinput">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+  <br>
+  <br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Average Rating</th>
+      </tr>
+    </thead>
+<!-- {'itemID': 822, 'name': 'Zozo', 'price': Decimal('15.00'), 'avg_rating': Decimal('0.00'), 'description': None, 'image': None} -->
+    <tbody>
+        {% for row in searchr %}
+        <tr>
+            <td>
+              <a href="item/{{row['itemID']}}">
+                {{row['name']}}
+              </a>
+            </td>
+            <td>{{row['category']}}</td>
+            <td>{{row['description']}}</td>
+            <td>{{row['price']}}</td>
+            <td>{{row['avg_rating']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}
+</html>

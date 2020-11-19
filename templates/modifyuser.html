@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/profilepage.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <title>Update Your User Information</title>
+    </head>
+
+    <body>
+    {% extends "base.html" %}
+    {% block title %} Seller Page {% endblock %}
+    {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <center>
+        <h3>Update User Information</h3>
+        
+        <div class ="row">
+        <div class ="col-md-4 offset-md-4">
+            <div class = "card card-body">
+            <form action= "/modifymydata" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                <input type = "text" class ="form-control" name = "newfirst" placeholder ="First Name">
+                </div>
+                <div class ="form-group">
+                <input type = "text" class ="form-control" name = "newlast" placeholder ="Last Name">
+                </div>
+                <div class ="form-group">
+                <input type = "email" class ="form-control" name = "newemail" placeholder ="Email Address">
+                </div>
+                <div class ="form-group">
+                <input type = "text" class ="form-control" name = "newpass" placeholder ="Password">
+                </div>
+                <div class ="form-group">
+                <label for="avatar">Upload a Profile Image (Optional)</label><br>
+                <input type = "file" class ="form-control" name = "newimage" id="newimage" placeholder ="Image">
+                </div>
+                <div class ="form-group">
+                <button type ="submit" class ="btn btn-primary btn-block">Update</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+        </center> 
+
+    <br>
+    <br>
+
+    <h3>Your Current Information</h3>
+    <table class="table">
+        <tr>
+        <th scope="row">Image</th>
+        <td><img src="{{image_path}}" alt="Avatar" class="avatar"></td> 
+        </tr>
+        <tr>
+        <th scope="col">First Name</th>
+        <td>{{first_name}}</td>
+        </tr>
+        <tr>
+        <th scope="row">Last Name</th>
+        <td>{{last_name}}</td>
+        </tr>
+        <tr>
+        <th scope="row">Email Address</th>
+        <td>{{email}}</td>
+        </tr>
+    </table>
+
+    <center> <a href="{{ url_for('user')}}">Back to User Profile</a> </center>
+    {% if seller == true %}
+    <center>
+      <a href="{{ url_for('seller')}}">View my Seller Page</a>
+      <a href="{{ url_for('updateorg')}}">Modify my Organization Information</a>
+    </center>
+    {% endif %}
+
+    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/login.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <title>Sign in</title>
+</head>
+
+<body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="main">
+    <p class="sign" align="left">Recover Password</p>
+    <form class="form1" action='#' method="post">
+      <input class="user" type="text" align="center" name ="email" placeholder="Email" required>
+      <p align="center"><input type="submit" value="submit"/> </p>
+      <p align="center"><a href="{{ url_for('registration')}}">Create an account</a>	</p>
+      <p align="center"><a href="{{ url_for('home')}}">Home</a>	</p>
+      
+    </form>     
+    </div>
+
+    <br>
+    
+     
+</body>
+
+</html>

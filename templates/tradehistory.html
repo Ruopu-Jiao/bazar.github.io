@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title%}User Page{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+       <p>{{msg}}</p>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+
+ <h3>Trade History</h3>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Date and Time Sold</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Buyer First Name</th>
+        <th scope="col">Buyer Last Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Number Purchased</th>
+        <th scope="col">Seller Rating</th>
+        <th scope="col">Comment on Seller</th>
+        <th scope="col">Item Rating</th>
+        <th scope="col">Comment on Item</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in history%}
+        <tr>
+          <td>{{row.daytime}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.first_name}}</td>
+          <td>{{row.last_name}}</td>
+          <td>{{row.price}}</td>
+          <td>{{row.num}}</td>
+          <!-- <td>{{row.seller_rating}}</td>
+          <td>{{row.seller_comments}}</td>
+          <td>{{row.numstars}}</td>
+          <td>{{row.comments}}</td> -->
+          
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

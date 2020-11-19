@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Add/Modify {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <center>
+  <h3>List a New Item</h3>
+<div class="col-md-4">
+  <div class="card card-body">
+    <form action="{{url_for('additems')}}" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="Item Name" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="price" placeholder="Price" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="num" placeholder="Count" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="desc" placeholder="Description" required>
+      </div>
+      <div class="form-group">
+        <input type="file" class="form-control" name="image" accept =".jpg" id="image" required>
+      </div>
+      <button class="btn btn-primary btn-block">
+        Add Item
+      </button>
+    </form>
+  </div>
+</div>
+<a href="{{ url_for('seller')}}">Return to Seller Page</a>
+</center>
+{% endblock %}

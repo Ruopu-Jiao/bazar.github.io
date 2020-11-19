@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Items Page {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+            
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Item Price</th>
+      <th scope="col">Average Rating</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Description</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{item.itemID}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.avg_rating}}</td>
+      <td>{{item.num}}</td>
+      <td>{{item.description}}</td> 
+      <td>{{item.image}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<center>
+{% if logvar == True %}
+
+<form action="#" method = "POST">
+<label for="num">How much do you want to buy?</label><br>
+<input type="text" id="num" name="num"><br>
+<button type="submit"  value="Submit">Add to Cart</button>
+</form>
+
+{% endif %}
+
+
+</center>
+
+{% endblock %}

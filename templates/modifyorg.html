@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/profilepage.css')}}">
+        <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <title>Update Your User Information</title>
+    </head>
+
+    <body>
+    {% extends "base.html" %}
+    {% block title %} Seller Page {% endblock %}
+    {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <center>
+        <h3>Update Organization Information</h3>
+        
+        <div class ="row">
+        <div class ="col-md-4 offset-md-4">
+            <div class = "card card-body">
+            <form action= "/modifymyorgdata" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                <input type = "text" class ="form-control" name = "newname" placeholder ="Organization Name">
+                </div>
+                <div class ="form-group">
+                <input type = "text" class ="form-control" name = "newdescr" placeholder ="Organization Description">
+                </div>
+                <div class ="form-group">
+                <button type ="submit" class ="btn btn-primary btn-block">Update</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+        </center> 
+
+    <br>
+    <br>
+
+    <h3>Current Organization Information</h3>
+    <table class="table">
+        <tr>
+        <th scope="col">Name</th>
+        <td>{{name}}</td>
+        </tr>
+        <tr>
+        <th scope="row">Description</th>
+        <td>{{descr}}</td>
+        </tr>
+    </table>
+
+    <center> <a href="{{ url_for('user')}}">Back to User Profile</a> </center>
+    <center> <a href="{{ url_for('seller')}}">View my Seller Profile</a> </center>
+
+    {% endblock %}
+    </body>
+</html>

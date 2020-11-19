@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %} Add Balance {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+       <p>{{msg}}</p>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+<form action= "/addbalance/{{userID}}" method = "POST">
+   <head>
+       <link rel="stylesheet" href="{{ url_for('static',filename='css/addbalance.css')}}">
+       <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+       <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+       <title>Add Balance Page</title>
+   </head>
+ 
+   <body>
+       <!-- <h1 style="color: white;">Add Balance Page</h1> -->
+       <h1>Add Balance</h1>
+       <a href="{{ url_for('home')}}">Return to HomePage</a>  
+       <br>
+       <a href="{{ url_for('user')}}">Return to Account Page</a>  
+ 
+       <h3>Hi {{first_name}}, your current balance is:</h3>
+       <br>
+       <h2>{{currentBalance[0]}}</h2>
+
+       <!-- Credit Card Input -->
+       <div class ="form-group" style="margin-right: 80%;">
+        <label for="addValue" style="margin-right: 1%;">Add Cash to Account</label>
+        <input type ="number" class ="form-control" name="addValue" placeholder ="$0.00">
+      </div>
+
+       <h3>Payment Information</h3>
+       <div class="row" style="display: inline-block; margin: 5%;">
+        <div class="col-75">
+          <div class="container">
+            <form action="/action_page.php">
+              <div class="row">
+                <div class="col-50" style="margin: 1%;">
+                  <label for="cname" style="margin-right: 6%;">Name on Card</label>
+                  <input type="text" id="fname" name="firstname" placeholder="First Name">
+                  <input type="text" id="lname" name="lastname" placeholder="Last Name">
+
+                <div class="col-50" style="margin-bottom: 1%; margin-top: 1%;">
+                  <label for="ccnum">Credit Card Number</label>
+                  <input type="text" id="ccnum" name="cardnumber" placeholder="XXXX-XXXX-XXXX-XXXX">
+                  <label for="expdate">Exp Date</label>
+                  <input type="text" id="expdate" name="expdate" placeholder="01/20">
+                </div>
+
+                <div class="col-50" style="margin: 1%;">
+                  <label for "code">3-digit security code</label>
+                  <input type="text" id="code" name="securitycode" placeholder="123">
+                </div>
+              </div>
+
+              <div class ="form-group" style="margin: 2%;">
+                <button type ="submit" class ="btn btn-primary btn-block">
+                  Add to Balance
+                </button>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+   </body>
+</form>
+{% endblock %}

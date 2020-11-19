@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %} Purchase History {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+       <p>{{msg}}</p>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+ <body>
+    <h1>Cart</h1>
+    <a href="{{ url_for('home')}}">Return to HomePage</a>	
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item ID</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Sold By</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for row in cartItems%}
+            <tr>
+                <td name= "itemID">{{row[0]}}</td>
+                <form action= "/cart/{{row[0]}}" method = "POST">
+                {% for d in row[1:5] %}
+                <td>{{d}}</td>
+                {% endfor %}
+                <td>
+                    <!-- Add Quantity -->
+                    <div class ="form-group" style="width: fit-content; float: left;">
+                        <label for="addQuantity" style="margin-right: 1%;">Update Quantity</label>
+                        <div class="form-group" style="display: flex;">
+                        <input type ="number" class ="form-control" name="addQuantity" placeholder ="0" style="margin-right: 1%;">
+                        <button id= "addBtn" type ="submit" class ="btn btn-secondary" style="display: inline-block; text-align: center;">
+                            +
+                        </button>
+                        </div>
+                    </div>
+                </td>
+                </form>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <form action= "/cart/checkout/{{buyerID}}/{{totalPrice}}" method = "POST">
+          <div class="form-group" style="display: inline-flex; margin-right: 10%; float: right;">
+            <h2 style="margin-right: 20px;" name="totalPrice">Total Price: ${{totalPrice}}</h2>
+            <button id= "checkoutBtn" type ="submit" class ="btn btn-primary btn-block" style="width: fit-content; text-align: center;">
+              CHECKOUT
+            </button>
+          </div>
+        </form>
+ </body>
+{% endblock %}

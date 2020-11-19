@@ -1,0 +1,22 @@
+py -m venv env
+env\Scripts\activate
+pip install flask flask_sqlalchemy
+
+NOW YOU HAVE TO INSTALL MYSQL FROM THE WEBSITE!
+-Download MySQL on local machine: https://dev.mysql.com/doc/mysql-osx-excerpt/8.0/en/osx-installation-pkg.html
+-Download MySQL for commandline: https://dev.mysql.com/downloads/shell/
+
+After download MySQL for commandline run "mysqlsh" on plain terminal window then run "pip install mysqlclient" in 
+flask environment in IDE 
+
+pip install mysqlclient (USE FOR MAC)
+
+pip install flask_mysqldb
+
+pip install pyyaml
+
+DOWNLOAD Homebrew
+
+brew install mysql
+
+Then run 'python app.py'

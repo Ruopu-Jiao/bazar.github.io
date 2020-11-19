@@ -1,0 +1,75 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/profilepage.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <style>
+      .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      </style>
+    <title>Your User Profile</title>
+  </head>
+
+  <body>
+    {% extends "base.html" %}
+    {% block title%}User Page{% endblock %}
+    {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+            <p>{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <!--Display: Welcome to your user page, *First Name of User*-->
+    <h2>Welcome to your user page, {{first_name}}</h2>
+    <h3>Your Current Information</h3>
+    <a href="{{ url_for('updateuser')}}">Update my Information</a>
+    <!--TODO: Figure out updating info
+    All user data stored in Buyers: (userID, email, password,
+    currentBalance, first_name, last_name, image)
+    -->
+    <table class="table">
+      <tr>
+        <th scope="row">Image</th>
+        <td><img src="{{image_path}}" alt="Avatar" class="avatar"></td> 
+      </tr>
+      <tr>
+        <th scope="col">First Name</th>
+        <td>{{first_name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Last Name</th>
+        <td>{{last_name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Email Address</th>
+        <td>{{user}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Current Balance</th>
+        <td>{{balance}}</td>
+      </tr>
+    </table>
+     
+    {% if seller == true %}
+    <center><a href="{{ url_for('seller')}}">View my Seller Page</a></center>
+    <center><a href="{{ url_for('updateorg')}}">Update my Organization Information</a></center>
+    {% endif %}
+    {% endblock %}
+    
+    </body>
+    
+    </html>
+
+
+
+
+

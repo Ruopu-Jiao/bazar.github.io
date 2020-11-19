@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Search Results {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+       <p>{{msg}}</p>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+
+<h1>Search Results</h1>
+
+<a href="{{ url_for('home')}}">Return to Homepage</a>	
+<br>
+<a href="{{ url_for('cart')}}">Cart</a>	
+<br>
+<a href="{{ url_for('item')}}">Temp link to item page</a>	
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Average Rating</th>
+        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for row in searchr %}
+        <tr>
+          <td name= "itemID">{{row[0]}}</td>
+          <form action= "/item/{{row[0]}}" method = "POST">
+            {% for d in row[1:]%}
+              <td>{{d}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</body>
+{% endblock %}

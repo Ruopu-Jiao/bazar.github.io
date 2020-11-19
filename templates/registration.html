@@ -1,0 +1,60 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/reg.css')}}">
+  <link href="https://fonts.googleapis.com/css?family=Arial" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <title>Register as a New User</title>
+</head>
+
+<body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="main">
+    <p class="sign">Create an Account</p>
+    <form class="form1" action='#' method="post" enctype="multipart/form-data">
+      <input class="user" type="text" align="center" name ="first_name" id="first_name" placeholder="First Name" required>
+      <input class="user" type="text" align="center" name ="last_name" id="last_name" placeholder="Last Name" required>
+      <input class="user" type="email" align="center" name ="email" id="email" placeholder="Email Address" required>
+      <br>
+      <label style="word-wrap:break-word; vertical-align:middle;"><input class="user" type="checkbox" style="margin-left: -30%;" name ="sellercheck" id="sellercheck" value="true">I would like to be a Seller.</label>
+      <br>
+      <p class="sign" align="left">For sellers only. Optional.</p>
+      <input class="user" type="text" align="center" name ="org_name" id="org_name" placeholder="Organization Name">
+      <input class="user" type="text" align="center" name="description" id="description" placeholder="Organization Description">
+
+      <p class="sign" align="left">Please choose a password</p>
+      <input class="pass" type="password" align="center" name ="password" id="password" placeholder="Password" required>
+      <input class="pass" type="password" align="center" name ="confirmedpw" id="confirmedpw" placeholder="Confirm Password" required><br>
+      <input class="pass" type="checkbox" style="margin-left: -30%;" onclick="ShowPW()">Show Password
+      
+      <script>
+        function ShowPW() {
+          var x = document.getElementById("password");
+          if (x.type === "password") {x.type = "text";}
+          else {x.type = "password";}
+          var y = document.getElementById("confirmedpw");
+          if (y.type === "password") {y.type = "text";}
+          else {y.type = "password";}
+        }
+        </script>
+      <br>
+      <label for="avatar" style="float: center; margin-left: 20%;">Upload a Profile Image as .jpg (Optional)</label><br>
+      <input class="user" type="file" align="center" name ="avatar" id="avatar" accept=".jpg">
+
+      <p align="center"><input type="submit" value="Register!"/> </p>
+
+      <p align="center"><a href="{{ url_for('login')}}">Log in</a>	</p>
+      <p align="center"><a href="{{ url_for('home')}}">Return Home</a>	</p>
+      
+    </form>     
+    </div>
+    <br>
+</body>
+</html>

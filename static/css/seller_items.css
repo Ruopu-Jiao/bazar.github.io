@@ -1,0 +1,92 @@
+    body {
+        background-color: #2C3B4E;
+        font-family: 'Arial', sans-serif;
+    }
+
+    img {
+    border-radius: 10%;
+    float:left;
+    padding-right: 10px;
+    }
+
+    .searchbar{
+        padding-left: 40px;
+    }
+
+    .name {
+        padding-left: 40px;
+    }
+
+    * {
+    box-sizing: border-box;
+    }
+
+    /* Style the search field */
+    form.search input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-radius: 0.5em;
+    float: left;
+    width: 70%;
+    background: #f1f1f1;
+    }
+
+    /* Style the submit button */
+    form.search button {
+    float: left;
+    width: 5%;
+    padding: 10px;
+    background: #FFAD33;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-radius: 0.5em;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+    }
+
+    form.search button:hover {
+    background: #FF9900;
+    }
+
+    
+    .modify {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #000;
+        background: #FF9900;
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Arial', sans-serif;
+        margin-left: 35%;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .mom {
+    width: 100%; /* Try setting this to 400px or something */
+    display: table;
+    border: 1px solid #444444;
+    }
+    .child {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .childinner {
+        margin-left: 25px;
+    /* Decorative .. */
+        background-color: #cccccc;
+        min-height: 75px;
+    }
+    .child:first-child .childinner {
+        margin-left: 10;
+}
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
